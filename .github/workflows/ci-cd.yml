@@ -21,10 +21,11 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '17'   # Specify Java 17 version
-        distribution: 'adoptopenjdk'  # Use AdoptOpenJDK distribution
+        distribution: 'temurin'  # Use Temurin (Adoptium distribution)
 
     - name: Build with Maven
       run: mvn clean install -DskipTests=true  # Build the project, skip tests (since you don't have tests)
 
     - name: Build Spring Boot application
       run: mvn package -DskipTests=true  # Create the .jar file without running tests
+
