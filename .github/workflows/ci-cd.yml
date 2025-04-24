@@ -32,3 +32,9 @@ jobs:
 
     - name: List target directory
       run: ls -al target/  # List contents of target folder to check if JAR is there
+
+    - name: Upload JAR as artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: demo-jar
+        path: target/demo-0.0.1-SNAPSHOT.jar
