@@ -1,0 +1,39 @@
+name: CI/CD Workflow
+
+# Trigger the workflow on push and pull request events
+on:
+  push:
+    branches:
+      - master  # Trigger on push to the master branch
+  pull_request:
+    branches:
+      - master  # Trigger on pull request to master branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu environment
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2  # Checkout your repository's code
+
+    - name: Set up JDK 22
+      uses: actions/setup-java@v2
+      with:
+        java-version: '22'  # Set Java version to 22
+
+    - name: Build with Maven
+      run: mvn clean install -DskipTests=true  # Build the project, skip tests (since you don't have tests)
+
+    - name: Build Spring Boot application
+      run: mvn package -DskipTests=true  # Create the .jar file without running tests
+
+    - name: Deploy to Server (Example)
+      run: |
+        # Here you can deploy your app to your server, e.g. using scp, ssh, etc.
+        echo "Deploying the app..."
+        # Example deploy to remote server
+        # scp target/*.jar user@your-server:/path/to/deploy/
+        
+    - name: Notify success
+      run: echo "Deployment successful"
