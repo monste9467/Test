@@ -29,3 +29,6 @@ jobs:
     - name: Build Spring Boot application
       run: mvn package -DskipTests=true  # Create the .jar file without running tests
 
+
+    - name: List target directory
+      run: ls -al target/  # List contents of target folder to check if JAR is there
